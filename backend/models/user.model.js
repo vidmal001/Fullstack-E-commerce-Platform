@@ -67,7 +67,7 @@ userSchema.pre("save", async function (next) {
 
 // this below method is for login flow
 // if the correct username is john and password is mySecret123!
-// if they send mysecret as password in the login this function will say invalid credintials
+// if they send "my secret" as password in the login this function will say invalid credentials
 
 userSchema.methods.comparePassword = async function (password) {
   return bcrypt.compare(password, this.password); 
@@ -80,7 +80,7 @@ export default User;
 
 // Whole Process
 
-// Registration: The user enterd password mySecret123! is hashed and saved in the database as $2a$12$ZrAOugLDpB1eWOhjOWKhM.QZCwD8R.P1X7RyXaJQRoRfNJ0.EW2J6.
+// Registration: The user enters password as mySecret123! is hashed and saved in the database as $2a$12$ZrAOugLDpB1eWOhjOWKhM.QZCwD8R.P1X7RyXaJQRoRfNJ0.EW2J6.
 
 // Login: The user enters mySecret123!, and bcrypt.compare() compares the entered password with the stored hash.
 
