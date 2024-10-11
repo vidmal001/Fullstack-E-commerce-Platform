@@ -69,3 +69,7 @@ export const useUserStore = create((set, get) => ({
     }
   },
 }));
+
+
+// access token is going to expire in every 15 minutes of time so we need to handle some kind of
+// logic that's going to send the request to refresh token endpoint and just refresh it on every single 15 minutes.
