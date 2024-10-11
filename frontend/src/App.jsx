@@ -5,7 +5,8 @@ import { useEffect } from "react";
 import HomePage from "./pages/HomePage";
 import SignUpPage from "./pages/SignUpPage";
 import LoginPage from "./pages/LoginPage";
-
+import AdminPage from "./pages/AdminPage";
+import CategoryPage from "./pages/CategoryPage";
 // components
 import Navbar from "./components/Navbar";
 import LoadingSpinner from "./components/LoadingSpinner";
@@ -14,16 +15,16 @@ import LoadingSpinner from "./components/LoadingSpinner";
 import { useUserStore } from "./stores/useUserStore";
 
 const App = () => {
-  const { user, checkAuth,checkingAuth } = useUserStore();
+  const { user, checkAuth, checkingAuth } = useUserStore();
 
   useEffect(() => {
     checkAuth();
   }, [checkAuth]);
-   
+
   // once this runs it updates the user field since we have the user we can go to
   // the home page !user ?  <LoginPage /> : <HomePage />
 
-  if(checkingAuth) return <LoadingSpinner />
+  if (checkingAuth) return <LoadingSpinner />;
 
   return (
     <div className="min-h-screen bg-gray-900 text-white relative overflow-hidden">
@@ -45,6 +46,18 @@ const App = () => {
           <Route
             path="/login"
             element={!user ? <LoginPage /> : <Navigate to="/" />}
+          />
+          <Route
+            path="/secret-dashboard"
+            element={
+              user?.role === "admin" ? <AdminPage /> : <Navigate to="/login" />
+            }
+          />
+           <Route
+            path="/category/:category"
+            element={
+              <CategoryPage /> 
+            }
           />
         </Routes>
       </div>
