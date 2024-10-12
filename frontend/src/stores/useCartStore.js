@@ -47,15 +47,20 @@ export const useCartStore = create((set, get) => ({
     set({ cart: [], coupon: null, total: 0, subtotal: 0 });
   },
 
+  // The product is already in the cart – in this case, we need to update the quantity.
+  // The product is not in the cart yet – in this case, we need to add it as a new item.
+
   addToCart: async (product) => {
     try {
       await axios.post("/cart", { productId: product._id });
       toast.success("Product added to cart");
 
       set((prevState) => {
+        // We are using .find() to check whether the product already exists in the prevState.cart.
         const existingItem = prevState.cart.find(
           (item) => item._id === product._id
         );
+
         const newCart = existingItem
           ? prevState.cart.map((item) =>
               item._id === product._id
@@ -92,7 +97,7 @@ export const useCartStore = create((set, get) => ({
     get().calculateTotals();
   },
   calculateTotals: () => {
-    const { cart, coupon } = get();
+    const { cart, coupon } = get(); // gives the states we have.
     const subtotal = cart.reduce(
       (sum, item) => sum + item.price * item.quantity,
       0
