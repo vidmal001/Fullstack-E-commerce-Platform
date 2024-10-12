@@ -7,15 +7,22 @@ import SignUpPage from "./pages/SignUpPage";
 import LoginPage from "./pages/LoginPage";
 import AdminPage from "./pages/AdminPage";
 import CategoryPage from "./pages/CategoryPage";
+import CartPage from "./pages/CartPage";
+import PurchaseSuccessPage from "./pages/PurchaseSuccessPage";
+import PurchaseCancelPage from "./pages/PurchaseCancelPage";
+
 // components
 import Navbar from "./components/Navbar";
 import LoadingSpinner from "./components/LoadingSpinner";
 
 // stores
 import { useUserStore } from "./stores/useUserStore";
+import { useCartStore } from "./stores/useCartStore";
 
 const App = () => {
   const { user, checkAuth, checkingAuth } = useUserStore();
+
+  const { getCartItems } = useCartStore();
 
   useEffect(() => {
     checkAuth();
@@ -23,6 +30,12 @@ const App = () => {
 
   // once this runs it updates the user field since we have the user we can go to
   // the home page !user ?  <LoginPage /> : <HomePage />
+
+  useEffect(() => {
+    if (!user) return;
+    // get cart items
+    getCartItems();
+  }, [getCartItems, user]);
 
   if (checkingAuth) return <LoadingSpinner />;
 
@@ -53,11 +66,20 @@ const App = () => {
               user?.role === "admin" ? <AdminPage /> : <Navigate to="/login" />
             }
           />
-           <Route
-            path="/category/:category"
-            element={
-              <CategoryPage /> 
-            }
+          <Route path="/category/:category" element={<CategoryPage />} />
+          <Route
+            path="/cart"
+            element={user ? <CartPage /> : <Navigate to="/login" />}
+          />
+
+          <Route
+            path="/purchase-success"
+            element={user ? <PurchaseSuccessPage /> : <Navigate to="/login" />}
+          />
+
+          <Route
+            path="/purchase-cancel"
+            element={user ? <PurchaseCancelPage /> : <Navigate to="/login" />}
           />
         </Routes>
       </div>
