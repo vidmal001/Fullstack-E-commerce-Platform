@@ -66,8 +66,6 @@ The eCommerce Platform is a full-stack web application built to provide an end-t
 
 👉 **Sales Analytics**: Weekly sales, revenue, user counts, and product statistics for admins.
 
-👉 **Profile Management**: Users can update their profile and track their orders.
-
 👉 **Cloudinary Integration**: Upload and manage product images.
 
 👉 **Error Handling**: Graceful error handling for orders, authentication, and product management.
