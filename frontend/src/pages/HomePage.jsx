@@ -4,11 +4,11 @@ import { useProductStore } from "../stores/useProductStore";
 import FeaturedProducts from "../components/FeaturedProducts";
 
 const categories = [
-	{ href: "/jeans", name: "Jeans", imageUrl: "/jeans.jpg" },
-	{ href: "/t-shirts", name: "T-shirts", imageUrl: "/tshirts.jpg" },
-	{ href: "/shoes", name: "Shoes", imageUrl: "/shoes.jpg" },
+	{ href: "/jeans", name: "Jeans", imageUrl: "/jeans2.jpg" },
+	{ href: "/t-shirts", name: "T-shirts", imageUrl: "/tshirt.jpg" },
+	{ href: "/shoes", name: "Shoes", imageUrl: "/shoe.jpg" },
 	{ href: "/glasses", name: "Glasses", imageUrl: "/glasses.png" },
-	{ href: "/jackets", name: "Jackets", imageUrl: "/jackets.jpg" },
+	{ href: "/jackets", name: "Jackets", imageUrl: "/jackets1.jpg" },
 	{ href: "/suits", name: "Suits", imageUrl: "/suits.jpg" },
 	{ href: "/bags", name: "Bags", imageUrl: "/bags.jpg" },
 ];
